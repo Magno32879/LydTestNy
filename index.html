@@ -2,14 +2,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LydTest</title>
+    <title>BbyLydTest</title>
     <style>
         body{
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             }
-
         #ramme{
            width: 500px;
            height: 500px;
@@ -20,16 +20,14 @@
            border: 2px solid darkmagenta;
            background-color: pink;
         }
-        button{
-            
+        button{   
             margin: 10px;
             z-index: 1;
         }
-
         .heart{
             position: absolute;
             margin: auto;
-            top: 0;
+            top: 150px;
             right: 0;
             left: 0;
             bottom: 0;
@@ -37,11 +35,9 @@
             height: 175px;
             width: 175px;
             transform: rotate(225deg);
-            z-index: 0;
-            
+            z-index: 0;    
+            transition: all 2s ease-in-out; 
         }
-       
-
         .heart::after{
             background-color: red;
             content: "";
@@ -62,33 +58,38 @@
             top: 87.5px;
             left: 0;
         }
+      h1{
+          z-index: 4;   
+      }
+      .snurr{
+          transform: rotate(360deg), scale(2);
+      }
     </style>
 </head>
 <body>
-    <div class="heart"></div>
-    <div id="ramme"></div>
-    <div>jndf</div>
+    <h1>Til bby<3</h1>
+    <div id="ramme">
+        <div class="heart" id="hjerte"></div>
+    </div>
     <script>
-   
         let ramme = document.querySelector("#ramme");
+        let heart = document.querySelector("#hjerte")
         let lyder = [
             {
-                Navn: "Hey bby",
+                Navn: "Prøvde bare",
                 Lyd: "HeyBby.mp3"
             },
             {
-                Navn: "Veldig glad i deg bby",
+                Navn: "å være",
                 Lyd: "VeldigGlad.mp3"
             },
             {
-                Navn: "Savner deg masse, <br> bye bye",
+                Navn: "søt",
                 Lyd: "SavnerDeg.mp3"
             }
         ];
-
             let lydAvspilling  = new Audio();
-            console.log(lydAvspilling.src); 
-                       
+            console.log(lydAvspilling.src);              
 
         for (let i = 0; i < lyder.length; i++) {
             
@@ -102,25 +103,26 @@
         function spillLyd(event){
             let valgtKnapp = event.target.id;
             console.log(valgtKnapp);
-
             console.log("KJØRER")
-            
             let buttons = document.querySelectorAll("button");
             lydAvspilling.src = lyder[valgtKnapp].Lyd;  
-            
 
             lydAvspilling.play(); 
 
-            console.log(lydAvspilling.src);   
-        
+           heart.animate([
+                {
+                    transform: "rotate(0)"
+                },
+                {
+                    transform: "rotate(360deg)"
+                }
+                ], 
+                {
+                    duration: 1000
+                }
+            )
+            console.log(lydAvspilling.src);  
         }
-
-
-     
-
-
-
-
     </script>
 </body>
 </html>
